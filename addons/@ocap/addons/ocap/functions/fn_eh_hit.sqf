@@ -73,4 +73,19 @@ params ["_unit", "_causedBy", "_damage", "_instigator"];
 
 	DEBUG(_eventData);
 	[":EVENT:", _eventData] call ocap_fnc_extension;
+
+	//section contact reporting
+	if (isPlayer _unit) then {
+		_grpID = group _unit;
+		if (_grpID getVariable ["ocap_inContact", false]) then {
+			_o = _grpID getVariable ["ocap_sicFriendlyHits", 0];
+			_grpID setVariable ["ocap_sicFriendlyHits", _o + 1];
+		};
+	} else {
+		_grpID = group _instigator;
+		if (_grpID getVariable ["ocap_inContact", false]) then {
+			_o = _grpID getVariable ["ocap_sicEnemyHits", 0];
+			_grpID setVariable ["ocap_sicFriendlyHits", _o + 1];
+		};
+	};
 };

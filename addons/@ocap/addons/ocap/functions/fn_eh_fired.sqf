@@ -177,3 +177,7 @@ if (_ammoSimType isEqualTo "shotBullet") then {
 	// };
 	["ocap_handleMarker", ["DELETED", _markName]] call CBA_fnc_localEvent;
 };
+if !(isPlayer _firer) exitWith {};
+_grpID = group _firer;
+if (_grpID getVariable ["ocap_inContact", false]) exitWith {_grpID setVariable ["ocap_lastContact", 1];};
+[_firer, _grpID] spawn ocap_fnc_sectionInContact;
