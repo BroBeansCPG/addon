@@ -30,8 +30,10 @@ _dur = (_end - _start) / 60;
 	str side _grpID, //3 - Side
 	"#FF0000", // 4 - Event Colour
 	getPosAtl leader _grpID, //5 - Where
-	_grpID getVariable "ocap_sicFriendlyHits", // 6 - Friendly Hits
-	_grpID getVariable "ocap_sicEnemyHits" //7 - Enemy Hits
+	_start, //6 - Start
+	_dur, //7 - Duration
+	_grpID getVariable "ocap_sicFriendlyHits", // 8 - Friendly Hits
+	_grpID getVariable "ocap_sicEnemyHits" //9 - Enemy Hits
 
 ]] call ocap_fnc_extension;
 _grpID setVariable ["ocap_inContact", false];
